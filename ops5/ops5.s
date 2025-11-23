@@ -1,3 +1,5 @@
+#lang sicp
+
 ;; File: OPS5.S
 
 ;; SchemeOPS5 macro definitions.
@@ -529,7 +531,7 @@
   
   (define (loop)
     (if (atom? data)
-        #!TRUE
+        #t
         (cond
               ((not (creation-time (car data)))
                   #f)
@@ -563,7 +565,7 @@
 (define (insertcs name data rating)
   (let ((instan #f))
     (if (refracted name data)
-        #!FALSE
+        #f
         (begin
           (set! instan (list (cons name data) (order-tags data) rating))
           (and (atom? *conflict-set*) (set! *conflict-set* #f))
@@ -730,7 +732,7 @@
    (if (not (symbol? var))
        (error "Non-symbol argument to get" var))
    (let ((entry (assq property (cdr (->pair var)))))
-      (if entry (cdr entry) #!false)))
+      (if entry (cdr entry) #f)))
 
 (define (explode symbol)
    (mapcar (lambda (x) (string->symbol (list->string (list x))))
